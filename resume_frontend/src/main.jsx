@@ -9,10 +9,12 @@ import Service from './pages/service'
 import Resume from './pages/Resume'
 import Contact from './pages/contact'
 import GenerateResume from './pages/GenerateResume'
+import { Toaster } from 'react-hot-toast'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <Toaster />
       <Routes>
         <Route path="/" element={<Root />}>
           <Route index element={<Home />} />
