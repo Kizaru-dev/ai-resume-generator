@@ -1,7 +1,8 @@
 import axios from "axios";
 
 
-export const baseURLL = "http://localhost:8080/api/v1";
+// Use the deployed backend URL from environment variables, fallback to localhost for local dev
+export const baseURLL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080/api/v1";
 
 export const axiosIntance = axios.create({
     baseURL: baseURLL,
