@@ -5,16 +5,36 @@ import { toast } from 'react-hot-toast';
 function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate network request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast.success("Message sent successfully!");
-      e.target.reset();
-    }, 1500);
+    const formData = new FormData(e.target);
+    formData.append("access_key", "da96086e-afaa-4642-977b-61528fcfc39a");
+    formData.append("subject", "New Contact Form Submission from AI Resume Generator");
+    formData.append("from_name", "AI Resume Generator Contact");
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            toast.success("Message sent successfully!");
+            e.target.reset();
+        } else {
+            console.error("Error", data);
+            toast.error("Failed to send message. Please try again.");
+        }
+    } catch (error) {
+        console.error("Error submitting form:", error);
+        toast.error("An error occurred. Please try again later.");
+    } finally {
+        setIsSubmitting(false);
+    }
   };
 
   return (
@@ -90,7 +110,7 @@ function Contact() {
                 <div className="mt-12 pt-8 border-t border-white/10">
                     <h4 className="font-semibold text-base-content/60 text-sm mb-4">Follow Us</h4>
                     <div className="flex gap-4">
-                        <a href="#" className="p-3 rounded-full bg-base-100 hover:bg-primary hover:text-white transition-all hover:scale-110 shadow-lg text-base-content border border-white/5">
+                        <a href="https://github.com/Kizaru-dev" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-base-100 hover:bg-primary hover:text-white transition-all hover:scale-110 shadow-lg text-base-content border border-white/5">
                             <Github className="w-5 h-5" />
                         </a>
                         <a href="#" className="p-3 rounded-full bg-base-100 hover:bg-[#0077b5] hover:text-white transition-all hover:scale-110 shadow-lg text-base-content border border-white/5">
@@ -114,6 +134,7 @@ function Contact() {
                                 </label>
                                 <input 
                                     type="text" 
+                                    name="first_name"
                                     required
                                     placeholder="John" 
                                     className="input input-bordered w-full bg-base-200/50 focus:bg-base-100 transition-colors focus:border-primary focus:ring-1 focus:ring-primary shadow-inner" 
@@ -125,6 +146,7 @@ function Contact() {
                                 </label>
                                 <input 
                                     type="text" 
+                                    name="last_name"
                                     placeholder="Doe" 
                                     className="input input-bordered w-full bg-base-200/50 focus:bg-base-100 transition-colors focus:border-primary focus:ring-1 focus:ring-primary shadow-inner" 
                                 />
@@ -137,6 +159,7 @@ function Contact() {
                             </label>
                             <input 
                                 type="email" 
+                                name="email"
                                 required
                                 placeholder="john@example.com" 
                                 className="input input-bordered w-full bg-base-200/50 focus:bg-base-100 transition-colors focus:border-primary focus:ring-1 focus:ring-primary shadow-inner" 
@@ -148,6 +171,7 @@ function Contact() {
                                 <span className="label-text font-semibold text-base-content/80">Message</span>
                             </label>
                             <textarea 
+                                name="message"
                                 required
                                 className="textarea textarea-bordered h-32 bg-base-200/50 focus:bg-base-100 transition-colors focus:border-primary focus:ring-1 focus:ring-primary shadow-inner resize-y custom-scrollbar" 
                                 placeholder="Tell us what you're thinking about..."
