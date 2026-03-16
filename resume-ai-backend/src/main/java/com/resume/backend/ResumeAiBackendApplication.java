@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ResumeAiBackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ResumeAiBackendApplication.java, args);
+        SpringApplication.run(ResumeAiBackendApplication.class, args);
     }
 
 }
