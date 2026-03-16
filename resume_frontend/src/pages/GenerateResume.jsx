@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Sparkles, Trash2, Wand2, ArrowRight, Zap, Code, Briefcase } from 'lucide-react';
 import { generateResume } from '../api/ResumeService';
 import { toast } from 'react-hot-toast';
@@ -7,6 +8,7 @@ function GenerateResume() {
     const [description, setDescription] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
+    const navigate = useNavigate();
 
     const handleGenerate = async () => {
        console.log(description);
@@ -14,11 +16,13 @@ function GenerateResume() {
        try {
         setIsGenerating(true);
         const response = await generateResume(description);
-        console.log(response);
+        console.log("Backend response:", response);
         toast.success("Resume generated successfully");
+        const resumeData = response.data || response;
+        navigate('/resume', { state: { resumeData } });
         
        } catch (error) {
-        console.log(error);
+        console.error(error);
         toast.error("Failed to generate resume");
        } finally {
         setIsGenerating(false);

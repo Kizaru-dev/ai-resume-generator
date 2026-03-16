@@ -1,0 +1,28 @@
+// {
+//     personalInformation: {
+//         fullName: "",
+//         email: "",
+//         phoneNumber: "",
+//         linkedin: "",
+//         github: "",
+//         portfolio: "",
+//         address: "",
+//     },
+//     summary: "",
+//     skills: 
+//     {
+//         programingLanguages: [],
+//         frameworks: [],
+//         databases: [],
+//         cloud: [],
+//         devOpsTools: [],
+//         otherSkills:[],
+//     },
+//     experience:[],
+//     education:[],
+//     certifications: [],
+//     projects: [],
+//     achievements: [],
+//     languages: [],
+//     interests: []
+// };
