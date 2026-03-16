@@ -16,7 +16,7 @@
 
 ## 🚀 Live Demo
 
-[**View Live Project**](https://ai-resume-generator.vercel.app/) *(Note: replace with actual vercel domain)* | [**Backend API (Render)**](https://ai-resume-generator-ph3c.onrender.com)
+[**View Live Project**](https://ai-resume-generator-smoky.vercel.app/)
 
 ---
 
