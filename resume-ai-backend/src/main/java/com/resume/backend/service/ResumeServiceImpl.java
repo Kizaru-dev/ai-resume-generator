@@ -38,8 +38,9 @@ public class ResumeServiceImpl implements ResumeService {
 
     // to load the file .
      String loadPromptFromFile(String filename) throws IOException {
-      Path path =   new ClassPathResource(filename).getFile().toPath();
-      return Files.readString(path);
+        try (java.io.InputStream inputStream = new ClassPathResource(filename).getInputStream()) {
+            return new String(inputStream.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+        }
     }
 
     String putValuesToTemplate(String template , Map<String , String> values){
