@@ -45,3 +45,11 @@ githubLink (string or null if not provided)
 achievements: A list of notable contributions, awards, recognitions, publications, or talks (array of strings or empty array if none)
 languages: A list of spoken languages (array of strings).
 interests: A list of additional interests or hobbies related to technology or professional development ( array of string or empty array if none )
+
+CRITICAL FORMATTING RULES:
+- You MUST wrap the entire JSON output inside a markdown code block exactly like this:
+```json
+{ ... your json here ... }
+```
+- Do NOT include any text, explanation, or commentary before or after the code block.
+- Only output the ```json code block. Nothing else.

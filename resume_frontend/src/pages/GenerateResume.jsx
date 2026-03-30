@@ -17,13 +17,19 @@ function GenerateResume() {
         setIsGenerating(true);
         const response = await generateResume(description);
         console.log("Backend response:", response);
+
+        const resumeData = response?.data;
+        if (!resumeData) {
+          toast.error("AI response was unclear, please try again with more detail.");
+          return;
+        }
+
         toast.success("Resume generated successfully");
-        const resumeData = response.data || response;
         navigate('/resume', { state: { resumeData } });
         
        } catch (error) {
         console.error(error);
-        toast.error("Failed to generate resume");
+        toast.error("Failed to generate resume. Please try again.");
        } finally {
         setIsGenerating(false);
         setDescription("");
